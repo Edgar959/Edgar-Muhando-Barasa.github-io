@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Edgar Muhando Barasa · Student Portfolio</title>
+  <!-- Simple, clean, student-style portfolio. No heavy hover effects, no complex animations. -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f5f7fb;
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', system-ui, -apple-system, sans-serif;
+      line-height: 1.5;
+      color: #1e2a3e;
+      padding: 2rem 1.5rem;
+    }
+
+    /* main container – soft max width, centered */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.03), 0 2px 6px rgba(0,0,0,0.05);
+      overflow: hidden;
+      padding: 2rem 2rem 2.5rem 2rem;
+    }
+
+    /* simple header section */
+    .header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      border-bottom: 2px solid #eef2f6;
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .name-title h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      color: #0f2b3d;
+      margin-bottom: 0.3rem;
+    }
+
+    .tagline {
+      font-size: 1.05rem;
+      color: #2c5f7a;
+      background: #eef6fc;
+      display: inline-block;
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      font-weight: 500;
+    }
+
+    /* simple contact row (LinkedIn friendly) */
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      font-size: 0.9rem;
+      background: #f8fafd;
+      padding: 0.6rem 1rem;
+      border-radius: 60px;
+    }
+
+    .contact-links span, .contact-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: #2c5f7a;
+      font-weight: 500;
+    }
+
+    .contact-links a:hover {
+      text-decoration: underline;
+      background: transparent; /* no fancy hover transform, just underline */
+    }
+
+    /* simple section styling */
+    section {
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1e4663;
+      border-left: 5px solid #3b82b6;
+      padding-left: 0.9rem;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.2px;
+    }
+
+    /* about / summary card style */
+    .about-text {
+      background: #fefefe;
+      border: 1px solid #e4e9f0;
+      border-radius: 20px;
+      padding: 1.2rem 1.5rem;
+      color: #2c3e4e;
+      font-size: 1rem;
+    }
+
+    /* education & experience – clean list */
+    .edu-item, .exp-item {
+      background: #ffffff;
+      border: 1px solid #eef2f8;
+      border-radius: 18px;
+      padding: 1rem 1.4rem;
+      margin-bottom: 1rem;
+      transition: none; /* no hover effect, just static */
+    }
+
+    .edu-title, .exp-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #0f3b5c;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.35rem;
+    }
+
+    .edu-major, .exp-company {
+      font-weight: 600;
+      color: #3f6b8c;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .date {
+      font-size: 0.8rem;
+      font-weight: normal;
+      color: #6c869c;
+      background: #f0f4f9;
+      padding: 0.2rem 0.6rem;
+      border-radius: 30px;
+    }
+
+    .desc {
+      margin-top: 0.6rem;
+      font-size: 0.92rem;
+      color: #2c3e4e;
+      padding-left: 0.2rem;
+    }
+
+    /* projects grid - simple cards, no hover magic */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin-top: 0.5rem;
+    }
+
+    .project-card {
+      background: #ffffff;
+      border: 1px solid #e9edf2;
+      border-radius: 20px;
+      padding: 1.2rem 1.2rem 1.2rem 1.2rem;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    }
+
+    .project-name {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #1f5e8e;
+      margin-bottom: 0.4rem;
+    }
+
+    .project-tech {
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      color: #6c8eaa;
+      margin-bottom: 0.65rem;
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      color: #2d4a6e;
+      line-height: 1.4;
+    }
+
+    /* skills section - simple badge style */
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 0.5rem;
+    }
+
+    .skill-badge {
+      background: #eef3fa;
+      color: #1f5379;
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: none;
+    }
+
+    hr {
+      margin: 1.2rem 0 0.8rem;
+      border: 0;
+      height: 1px;
+      background: #e2e8f0;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #7e95ab;
+      margin-top: 2rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid #edf2f7;
+    }
+
+    /* responsive adjustments */
+    @media (max-width: 650px) {
+      body {
+        padding: 1rem;
+      }
+      .container {
+        padding: 1.2rem;
+      }
+      .header {
+        flex-direction: column;
+        align-items: start;
+      }
+      .contact-links {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+      .edu-title, .exp-title {
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+      .date {
+        align-self: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  
+  <!-- Header: name + role + quick links (LinkedIn friendly) -->
+  <div class="header">
+    <div class="name-title">
+      <h1>Edgar Muhando Barasa </h1>
+      <div class="tagline">Computer Science student · aspiring software developer</div>
+    </div>
+    <div class="contact-links">
+      <span>📧 eddieme959@gmail.com</span>
+      <span>📍 Eldoret, Kenya </span>
+      <a href="#">🔗 linkedin.com/edgar-me</a>
+      <a href="#">🐙 github.com/Edgar959</a>
+    </div>
+  </div>
+
+  <!-- About / summary section – entry level story -->
+  <section>
+    <h2>About me</h2>
+    <div class="about-text">
+     Computer Science student with interest in software development, hardware management and general troubleshooting skills dealing with computer technology. 
+     Currently building skills in basic programming using Python, C and C#, Web development and Databases. 
+     Seeking an internship to learn and gain hands-on experience to apply to real world applications.
+    </div>
+  </section>
+
+  <!-- Education section (student focus) -->
+  <section>
+    <h2>Education</h2>
+    <div class="edu-item">
+      <div class="edu-title">
+        <span>University of Eldoret</span>
+        <span class="date">2023 – 2027(Expected)</span>
+      </div>
+      <div class="edu-major">B.S. in Computer Science </div>
+      <div class="desc">
+        Relevant coursework: Data Structures & Algorithms, Web Development, Database Systems, 
+        Operating Systems, Human-Computer Interaction.
+      </div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-title">
+        <span>Friends School Kamusinga</span>
+        <span class="date">2019 – 2022</span>
+      </div>
+      
+    </div>
+  </section>
+
+  
+
+  <!-- Projects – simple cards, no interactive hover effects, just info -->
+  <section>
+    <h2>Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-name">📚 Mwanafunzi SMS (Student Manangement System)</div>
+        <div class="project-tech">Python · Node.js · Express /div>
+        <div class="project-desc">
+          Developed a full-stack Student Management System using node.js and Express, implementing basic CRUD operations with dynamic database integration and responsive UI. 
+          The application features RESTful API architecture, real time data rendering, and intuitive user interface design for efficient record management.
+        </div>
+     
+  </section>
+
+  <!-- Skills & tools – simple badges, no javascript needed -->
+  <section>
+    <h2>Technical skills</h2>
+    <div class="skills-list">
+      <span class="skill-badge">Python</span>
+      <span class="skill-badge">JavaScript</span>
+      <span class="skill-badge">HTML5 & CSS3</span>
+      <span class="skill-badge">React (basic)</span>
+      <span class="skill-badge">Node.js</span>
+      <span class="skill-badge">SQL</span>
+      <span class="skill-badge">Git & GitHub</span>
+      <span class="skill-badge">Express</span>
+      <span class="skill-badge">Java</span>
+    </div>
+  </section>
+
+   <!-- small footer: social proof for LinkedIn, always simple -->
+  <div class="footer-note">
+    🌱 Open to internships & entry-level software roles – feel free to connect on LinkedIn or send an email.
+    <br>© 2026 Edgar Muhando Barasa · Portfolio
+  </div>
+</div>
+
+<!--
+   No complex JavaScript, no heavy hover interactions, 
+   just a clean, trustworthy entry-level portfolio 
+   ready to be linked from LinkedIn profile (custom domain or as GitHub Pages)
+-->
+</body>
+</html>
